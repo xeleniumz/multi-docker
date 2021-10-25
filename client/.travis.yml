@@ -1,0 +1,21 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t xeleniumz/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true xeleniumz/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-southeast-1'
+  app: 'docker'
+  env: 'Docker-env-2'
+  bucket_name: 'elasticbeanstalk-ap-southeast-1-615164663528'
+  bucket_path: 'docker'
+  on:
+    branch: main
