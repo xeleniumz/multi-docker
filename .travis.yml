@@ -8,7 +8,7 @@ before_install:
   - docker build -t xeleniumz/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker -e CI=true xeleniumz/react-test npm test 
+  - docker run -e CI=true xeleniumz/react-test npm test 
 
 after_success:
   - docker build -t xeleniumz/multi-client ./client 
