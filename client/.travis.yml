@@ -5,10 +5,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t xeleniumz/react-test -f Dockerfile.dev .
+  - docker build -t xeleniumz/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true xeleniumz/react-test npm run test
+  - docker run -e CI=true xeleniumz/docker-react npm run test
 
 deploy:
   provider: elasticbeanstalk
